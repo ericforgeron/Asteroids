@@ -5,6 +5,7 @@ import pygame
 import sys
 
 from constants import *
+from logger import log_state
 from player import *
 from asteroidfield import *
 from sys import *
@@ -27,7 +28,7 @@ def main():
     Shot.containers = (shots, updatable, drawable)
 
     # creating player for my game and setting the player in both groups
-    newPlayer = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
+    newPlayer = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2, shots_group = shots)
     # creating a new asteroid field object
     asteroidField = AsteroidField()
 
@@ -36,11 +37,14 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     while True:
+        log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         pygame.Surface.fill(screen, "black")
         updatable.update(dt)
+        for shot in shots:
+            shot.update(dt)
         for asteroid in asteroids:
             if newPlayer.collision(asteroid):
                print(f"Game over!")

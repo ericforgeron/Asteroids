@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+#Asteroids game files
+game_state.jsonl
