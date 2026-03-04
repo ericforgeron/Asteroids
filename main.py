@@ -27,6 +27,7 @@ def main():
         pygame.display.flip() # redraws the screen with effect of user input
         # clock.tick(60) # this is how I run the game at 60 frames per second
         dt = clock.tick(60) / 1000 # saving the delta time between each loop in seconds (milliseconds/1000)
+        clock.tick(60)
 
 if __name__ == "__main__":
     main()
