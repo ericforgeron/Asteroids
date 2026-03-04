@@ -21,11 +21,12 @@ def main():
         for event in pygame.event.get(): # For loop used to check for input, update the game, redraw the game
            if event.type == pygame.QUIT:
                return
+        player.update(dt)
         screen.fill("black") # makes the background black
         player.draw(screen) # draws my spaceship to the screen
         pygame.display.flip() # redraws the screen with effect of user input
-        clock.tick(60) # this is how I run the game at 60 frames per second
-        dt = clock.tick() / 1000 # saving the delta time between each loop in seconds (milliseconds/1000)
+        # clock.tick(60) # this is how I run the game at 60 frames per second
+        dt = clock.tick(60) / 1000 # saving the delta time between each loop in seconds (milliseconds/1000)
 
 if __name__ == "__main__":
     main()
