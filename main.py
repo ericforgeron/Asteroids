@@ -1,6 +1,7 @@
 import pygame
+import sys
 from constants import *
-from logger import log_state
+from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -38,6 +39,11 @@ def main():
            if event.type == pygame.QUIT:
                return
         updatable.update(dt) # Replaced player.update() with this so all objects that need updating get updated at the same time
+        for asteroid in asteroids:
+           if player.collides_with(asteroid):
+               log_event("player_hit")
+               print(f"Game over!")
+               sys.exit()
         screen.fill("black") # makes the background black
         # Replacing player.draw(screen) with this for loop to redraw all the objects on the screen instead of just the player spaceship 
         for object in drawable:
