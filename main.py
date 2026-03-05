@@ -5,6 +5,7 @@ from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -22,11 +23,13 @@ def main():
     drawable = pygame.sprite.Group() # This is the group for objects that can be drawn in each frame
     asteroids = pygame.sprite.Group() # This is the group for all the asteroids that will be hurled at my ship
     asteroidfield = pygame.sprite.Group() # This group I think will contain all the asteroids in the asteroid group
+    shots = pygame.sprite.Group() # This is the group for all the bullets I'll be shooting on screen
 
     # Here is where I create my containers
     Player.containers = (updatable, drawable) # I'm adding the Player class to these 2 groups
     Asteroid.containers = (updatable, drawable, asteroids) #I'm adding the asteroids to these 3 groups
     AsteroidField.containers = (updatable) # Asteroid Field only needs updatable because it's not a drawable object
+    Shot.containers = (updatable, drawable, shots) # I'm adding the Shot class to this container
 
     # Create our player and our asteroid field:
     player  = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # this is the instance of the player
