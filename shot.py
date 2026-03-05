@@ -7,7 +7,7 @@ from constants import LINE_WIDTH
 class Shot(CircleShape):
     def __init__(self, x, y, SHOT_RADIUS):
         super().__init__(x, y, SHOT_RADIUS)
-        self.position = [x, y]
+        #self.position = [x, y]
         self.radius = SHOT_RADIUS
 
     # in the Shot class 

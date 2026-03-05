@@ -42,11 +42,17 @@ def main():
            if event.type == pygame.QUIT:
                return
         updatable.update(dt) # Replaced player.update() with this so all objects that need updating get updated at the same time
+        # This is where I loop through looking for collisions betwen player and asteroid prior to redrawing the screen
         for asteroid in asteroids:
            if player.collides_with(asteroid):
                log_event("player_hit")
                print(f"Game over!")
                sys.exit()
+           # Adding another for loop in the existing asteroid loop to look for bullet collisions w/ the asteroid
+           for shot in shots:
+              if shot.collides_with(asteroid):
+                  log_event("asteroid_shot")
+                  asteroid.kill()
         screen.fill("black") # makes the background black
         # Replacing player.draw(screen) with this for loop to redraw all the objects on the screen instead of just the player spaceship 
         for object in drawable:
@@ -54,7 +60,6 @@ def main():
         pygame.display.flip() # redraws the screen with effect of user input
         # clock.tick(60) # this is how I run the game at 60 frames per second
         dt = clock.tick(60) / 1000 # saving the delta time between each loop in seconds (milliseconds/1000)
-        clock.tick(60)
 
 if __name__ == "__main__":
     main()
