@@ -52,6 +52,9 @@ def main():
            for shot in shots:
               if shot.collides_with(asteroid):
                   log_event("asteroid_shot")
+                  shot.kill() # Added this on my own because shots were continuing through the asteroid killing the
+                  # smaller asteroids when the asteroid splits.  With the shot gone, the smaller asteroids have time
+                  # to generate and split from eachother
                   # asteroid.kill()
                   asteroid.split() # replaced asteroid.kill() from previous chapter w/ asteroid.split()
         screen.fill("black") # makes the background black
