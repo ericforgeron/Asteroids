@@ -52,7 +52,8 @@ def main():
            for shot in shots:
               if shot.collides_with(asteroid):
                   log_event("asteroid_shot")
-                  asteroid.kill()
+                  # asteroid.kill()
+                  asteroid.split() # replaced asteroid.kill() from previous chapter w/ asteroid.split()
         screen.fill("black") # makes the background black
         # Replacing player.draw(screen) with this for loop to redraw all the objects on the screen instead of just the player spaceship 
         for object in drawable:
